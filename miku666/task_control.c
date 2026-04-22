@@ -260,7 +260,7 @@ void StartTask_Control(void const * argument)
                     sd_i_out = adv_pid_TEMP.speed[1];
                     sd_d_out = adv_pid_TEMP.speed[2];
                 }
-                sprintf(BufferWrite, "\n%lu,%.2f,%.3g,%.3g,%.2g,%.1f",
+                sprintf(BufferWrite, "\n%u,%.2f,%.3g,%.3g,%.2g,%.1f",
                     tick_10ms * 10, temp_avg_200ms,
                     sd_p_out, sd_i_out, sd_d_out,
                     pwm_avg_200ms * 100.0f);

@@ -7,6 +7,7 @@
 #include "fuzzy_pid.h"
 #include "advanced_pid.h"
 #include "pid.h"
+#include "../miku666/tec_handler.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -123,6 +124,9 @@ void AluMain(void const * argument)
   
   Alu_list_init(&sd_file_list);  
   Alu_sniff_files(&sd_file_list,"/"); 
+  
+  // 初始化 TEC 模块
+  TEC_Init();
 
   num_file = Alu_SD_csv_num("/") + 1; 
   
@@ -144,7 +148,10 @@ void AluMain(void const * argument)
   
   for(;;)
   {
-      // 1. 后台极速处理 SD 卡写入请求 (绝对不卡主循环)
+      // 1. 调用 TEC 轮询函数
+      TEC_Tick();
+      
+      // 2. 后台极速处理 SD 卡写入请求 (绝对不卡主循环)
       if (SDWriteQueueHandle != NULL) {
           while (xQueueReceive(SDWriteQueueHandle, recv_buf, 0) == pdTRUE) {
               uint32_t sd_write_start = HAL_GetTick();
@@ -169,7 +176,10 @@ void AluMain(void const * argument)
       if (UartRxQueue != NULL) {
           char uart_buf[64] = {0};
           if (xQueueReceive(UartRxQueue, uart_buf, 0) == pdTRUE) {
-              if (laser_test_state == 0) {
+              // 处理 TC 指令，显示 TEC 状态
+              if (strcmp(uart_buf, "TC") == 0 || strcmp(uart_buf, "tc") == 0) {
+                  TEC_PrintInfo();
+              } else if (laser_test_state == 0) {
                   if (strcmp(uart_buf, "laseron") == 0 || strcmp(uart_buf, "LASERON") == 0) {
                       if (enable_laser_test == 1 && is_heating_active == 0) {
                           is_serial_interacting = 1;

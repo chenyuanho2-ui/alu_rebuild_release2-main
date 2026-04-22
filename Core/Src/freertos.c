@@ -177,15 +177,15 @@ void MX_FREERTOS_Init(void) {
 
   /* Create the thread(s) */
   /* definition and creation of defaultTask */
-  osThreadDef(defaultTask, StartTouchGFX, osPriorityNormal, 0, 1024);
+  osThreadDef(defaultTask, StartTouchGFX, osPriorityNormal, 0, 1536);
   defaultTaskHandle = osThreadCreate(osThread(defaultTask), NULL);
 
   /* definition and creation of aluMain */
-  osThreadDef(aluMain, AluMain, osPriorityNormal, 0, 2048);
+  osThreadDef(aluMain, AluMain, osPriorityNormal, 0, 1536);
   aluMainHandle = osThreadCreate(osThread(aluMain), NULL);
 
   /* definition and creation of aluSubProgress */
-  osThreadDef(aluSubProgress, AluSubProgress, osPriorityHigh, 0, 2048);
+  osThreadDef(aluSubProgress, AluSubProgress, osPriorityAboveNormal, 0, 1536);
   aluSubProgressHandle = osThreadCreate(osThread(aluSubProgress), NULL);
 
   /* definition and creation of Task_Control */
@@ -271,13 +271,13 @@ __weak void AluSubProgress(void const * argument)
               uint32_t start_time = DWT->CYCCNT;
               
               for (int i = 0; i < buf_count; i++) {
-                  printf("[%lu]%.2f,%.1f,%.3g,%.3g,%.2g\r\n", 
+                  printf("[%lu]%.2f,%.3g,%.3g,%.2g,%.1f\r\n", 
                          print_buf[i].timestamp, 
                          print_buf[i].current_temp, 
-                         print_buf[i].pwm_out, 
                          print_buf[i].p_out, 
                          print_buf[i].i_out, 
-                         print_buf[i].d_out);
+                         print_buf[i].d_out,
+                         print_buf[i].pwm_out);
               }
               
               uint32_t end_time = DWT->CYCCNT;
@@ -296,13 +296,13 @@ __weak void AluSubProgress(void const * argument)
               uint32_t start_time = DWT->CYCCNT;
               
               for (int i = 0; i < buf_count; i++) {
-                  printf("[%lu]%.2f,%.1f,%.3g,%.3g,%.2g\r\n", 
+                  printf("[%lu]%.2f,%.3g,%.3g,%.2g,%.1f\r\n", 
                          print_buf[i].timestamp, 
                          print_buf[i].current_temp, 
-                         print_buf[i].pwm_out, 
                          print_buf[i].p_out, 
                          print_buf[i].i_out, 
-                         print_buf[i].d_out);
+                         print_buf[i].d_out,
+                         print_buf[i].pwm_out);
               }
               
               uint32_t end_time = DWT->CYCCNT;
@@ -327,11 +327,12 @@ __weak void AluSubProgress(void const * argument)
                      max_us, (float)print_time_max, avg_us, (float)print_time_sum / print_time_cnt, (unsigned int)print_time_cnt);
               printf("=============================\r\n\r\n");
           }
-          
+
           // 每1秒打印一次堆栈信息，无论是否在加热状态
           if (enable_stack_print == 1) {
-              printf("[STACK] aluMain:%u, Control:%u, SubProg:%u\r\n",
+              printf("[STACK] aluMain:%u, defaultTask:%u, Control:%u, SubProg:%u\r\n",
                      (unsigned int)uxTaskGetStackHighWaterMark(aluMainHandle),
+					 (unsigned int)uxTaskGetStackHighWaterMark(defaultTaskHandle),
                      (unsigned int)uxTaskGetStackHighWaterMark(Task_ControlHandle),
                      (unsigned int)uxTaskGetStackHighWaterMark(aluSubProgressHandle));
           }

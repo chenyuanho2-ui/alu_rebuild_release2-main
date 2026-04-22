@@ -163,6 +163,7 @@
 ".\alu_rebuild\thermocouple.o"
 ".\alu_rebuild\task_control.o"
 ".\alu_rebuild\ui_task.o"
+".\alu_rebuild\tec_handler.o"
 ".\alu_rebuild\advanced_pid.o"
 ".\alu_rebuild\fuzzy_pid.o"
 ".\alu_rebuild\pid.o"

@@ -1525,6 +1525,11 @@
               <FileType>1</FileType>
               <FilePath>..\miku666\ui_task.c</FilePath>
             </File>
+            <File>
+              <FileName>tec_handler.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\miku666\tec_handler.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
