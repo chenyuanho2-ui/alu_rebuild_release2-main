@@ -19,6 +19,7 @@ extern UART_HandleTypeDef huart4;
 extern TIM_HandleTypeDef htim1;
 
 extern QueueHandle_t SDWriteQueueHandle;
+extern QueueHandle_t UARTPrintQueueHandle;
 extern osSemaphoreId Sem_10msHandle;
 extern osSemaphoreId alu_temperatureHandle;
 extern osSemaphoreId alu_screenHandle;
@@ -84,10 +85,7 @@ void StartTask_Control(void const * argument)
     uint32_t temp_count_1s = 0;  // 1s采样计数
     float temp_avg_1s = 0.0f;  // 1s平均温度
 
-    char heating_print_buf[64] = {0};  // 加热打印内容
-    uint32_t heating_print_max = 0;  // 最长打印耗时(us)
-    uint32_t heating_print_sum = 0;  // 打印耗时累加(us)
-    uint32_t heating_print_cnt = 0;  // 打印次数计数
+
 
     for(;;)
     {
@@ -98,8 +96,6 @@ void StartTask_Control(void const * argument)
         // 10ms每次: 加热打印(T,P,I,D) + 计时 + 温度滤波采集 + 累加平均 + 脚踏检测 + PID控制输出
         // ================================================
         if (is_heating_active == 1) {
-            uint32_t tick_start = DWT->CYCCNT;
-
             float p_out = 0.0f, i_out = 0.0f, d_out = 0.0f;
             if (pid_algorithm_type == 0) {
                 p_out = pid_TEMP.speed[0];
@@ -115,16 +111,16 @@ void StartTask_Control(void const * argument)
                 d_out = adv_pid_TEMP.speed[2];
             }
 
-            snprintf(heating_print_buf, sizeof(heating_print_buf), "[%lu]%.2f,%.1f,%.3g,%.3g,%.2g",
-                     tick_10ms * 10, K_Temperature, pwm_percent * 100.0f, p_out, i_out, d_out);
-            printf("%s\r\n", heating_print_buf);
-
-            uint32_t tick_end = DWT->CYCCNT;
-            uint32_t elapsed = (tick_end >= tick_start) ? (tick_end - tick_start) : (0xFFFFFFFF - tick_start + tick_end);
-            heating_print_sum += elapsed;
-            heating_print_cnt++;
-            if (elapsed > heating_print_max) {
-                heating_print_max = elapsed;
+            // 打包数据并发送到打印队列（0阻塞，满了直接丢弃防卡死）
+            if (UARTPrintQueueHandle != NULL) {
+                UARTPrintData_t print_data;
+                print_data.timestamp = tick_10ms * 10;
+                print_data.current_temp = K_Temperature;
+                print_data.pwm_out = pwm_percent * 100.0f;
+                print_data.p_out = p_out;
+                print_data.i_out = i_out;
+                print_data.d_out = d_out;
+                xQueueSend(UARTPrintQueueHandle, &print_data, 0);
             }
         }
 
@@ -301,17 +297,7 @@ void StartTask_Control(void const * argument)
                        (unsigned int)uxTaskGetStackHighWaterMark(aluSubProgressHandle));
             }
 
-            if (enable_print_timing == 1 && heating_print_cnt > 0) {
-                float avg_us = (float)heating_print_sum / heating_print_cnt / (SystemCoreClock / 1000000.0f);
-                float max_us = (float)heating_print_max / (SystemCoreClock / 1000000.0f);
-                printf("\r\n\r\n===== PRINT TIMING (1s) =====\r\n");
-                printf("Max: %.1fus(%.0fcycles), Avg: %.1fus(%.0fcycles), Count: %u\r\n",
-                       max_us, (float)heating_print_max, avg_us, (float)heating_print_sum / heating_print_cnt, (unsigned int)heating_print_cnt);
-                printf("=============================\r\n\r\n");
-            }
-            heating_print_max = 0;
-            heating_print_sum = 0;
-            heating_print_cnt = 0;
+
         }
     }
 }

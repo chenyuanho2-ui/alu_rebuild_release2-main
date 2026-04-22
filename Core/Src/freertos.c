@@ -30,6 +30,7 @@
 #include "alu_temp.h"
 #include "alu_control.h"
 #include "alu_file.h"
+#include "task_control.h"
 #include <stdio.h>
 /* USER CODE END Includes */
 
@@ -53,6 +54,9 @@
 
 /* 定义一个全局的 SD 卡写入队列句柄 */
 QueueHandle_t SDWriteQueueHandle = NULL;
+
+/* 定义一个全局的串口打印队列句柄 */
+QueueHandle_t UARTPrintQueueHandle = NULL;
 
 /* USER CODE END Variables */
 osThreadId defaultTaskHandle;
@@ -165,6 +169,9 @@ void MX_FREERTOS_Init(void) {
 
   /* USER CODE BEGIN RTOS_QUEUES */
   /* add queues, ... */
+  /* 串口打印队列，长度40 */
+  osMessageQDef(uart_print_queue, 40, UARTPrintData_t);
+  UARTPrintQueueHandle = osMessageCreate(osMessageQ(uart_print_queue), NULL);
   /* USER CODE END RTOS_QUEUES */
 
   /* Create the thread(s) */
@@ -236,10 +243,44 @@ __weak void AluMain(void const * argument)
 __weak void AluSubProgress(void const * argument)
 {
   /* USER CODE BEGIN AluSubProgress */
-  /* Infinite loop */
+  UARTPrintData_t rx_data;
+  UARTPrintData_t print_buf[20];
+  uint8_t buf_count = 0;
+
   for(;;)
   {
-    osDelay(1);
+      // 等待队列数据，超时时间设为 50ms
+      if (xQueueReceive(UARTPrintQueueHandle, &rx_data, 50) == pdPASS) {
+          print_buf[buf_count++] = rx_data;
+          
+          // 如果攒够了20个数据（相当于200ms），一次性批量打印
+          if (buf_count >= 20) {
+              for (int i = 0; i < buf_count; i++) {
+                  printf("[%lu]%.2f,%.1f,%.3g,%.3g,%.2g\r\n", 
+                         print_buf[i].timestamp, 
+                         print_buf[i].current_temp, 
+                         print_buf[i].pwm_out, 
+                         print_buf[i].p_out, 
+                         print_buf[i].i_out, 
+                         print_buf[i].d_out);
+              }
+              buf_count = 0;
+          }
+      } else {
+          // 如果50ms内没收到新数据，说明可能停止加热了。把缓存里剩下的数据强制打印出来
+          if (buf_count > 0) {
+              for (int i = 0; i < buf_count; i++) {
+                  printf("[%lu]%.2f,%.1f,%.3g,%.3g,%.2g\r\n", 
+                         print_buf[i].timestamp, 
+                         print_buf[i].current_temp, 
+                         print_buf[i].pwm_out, 
+                         print_buf[i].p_out, 
+                         print_buf[i].i_out, 
+                         print_buf[i].d_out);
+              }
+              buf_count = 0;
+          }
+      }
   }
   /* USER CODE END AluSubProgress */
 }
