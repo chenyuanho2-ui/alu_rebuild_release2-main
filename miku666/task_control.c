@@ -277,7 +277,7 @@ void StartTask_Control(void const * argument)
         }
 
         // ================================================
-        // 1000ms间隔: 计算1s平均温度 + 信号量释放 + 堆栈打印 + 打印最长耗时统计
+        // 1000ms间隔: 计算1s平均温度 + 信号量释放
         // ================================================
         if (tick_10ms % 100 == 0) {
             if (temp_count_1s > 0) {
@@ -289,15 +289,6 @@ void StartTask_Control(void const * argument)
             extern float g_display_temp_avg;
             g_display_temp_avg = temp_avg_1s;
             osSemaphoreRelease(alu_temperatureHandle);
-
-            if (enable_stack_print == 1) {
-                printf("[STACK] aluMain:%u, Control:%u, SubProg:%u\r\n",
-                       (unsigned int)uxTaskGetStackHighWaterMark(aluMainHandle),
-                       (unsigned int)uxTaskGetStackHighWaterMark(Task_ControlHandle),
-                       (unsigned int)uxTaskGetStackHighWaterMark(aluSubProgressHandle));
-            }
-
-
         }
     }
 }

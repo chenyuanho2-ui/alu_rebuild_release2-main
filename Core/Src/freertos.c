@@ -31,6 +31,7 @@
 #include "alu_control.h"
 #include "alu_file.h"
 #include "task_control.h"
+#include "alu_main.h"
 #include <stdio.h>
 /* USER CODE END Includes */
 
@@ -246,15 +247,29 @@ __weak void AluSubProgress(void const * argument)
   UARTPrintData_t rx_data;
   UARTPrintData_t print_buf[20];
   uint8_t buf_count = 0;
+  uint32_t tick_count = 0;
+  
+  // 打印耗时统计变量
+  uint32_t print_time_max = 0;
+  uint32_t print_time_sum = 0;
+  uint32_t print_time_cnt = 0;
+
+  // 启用DWT循环计数器
+  CoreDebug->DEMCR |= CoreDebug_DEMCR_TRCENA_Msk;
+  DWT->CTRL |= DWT_CTRL_CYCCNTENA_Msk;
 
   for(;;)
   {
-      // 等待队列数据，超时时间设为 50ms
-      if (xQueueReceive(UARTPrintQueueHandle, &rx_data, 50) == pdPASS) {
+      tick_count++;
+      
+      // 等待队列数据，超时时间设为 10ms
+      if (xQueueReceive(UARTPrintQueueHandle, &rx_data, 10) == pdPASS) {
           print_buf[buf_count++] = rx_data;
           
           // 如果攒够了20个数据（相当于200ms），一次性批量打印
           if (buf_count >= 20) {
+              uint32_t start_time = DWT->CYCCNT;
+              
               for (int i = 0; i < buf_count; i++) {
                   printf("[%lu]%.2f,%.1f,%.3g,%.3g,%.2g\r\n", 
                          print_buf[i].timestamp, 
@@ -264,11 +279,22 @@ __weak void AluSubProgress(void const * argument)
                          print_buf[i].i_out, 
                          print_buf[i].d_out);
               }
+              
+              uint32_t end_time = DWT->CYCCNT;
+              uint32_t elapsed = (end_time >= start_time) ? (end_time - start_time) : (0xFFFFFFFF - start_time + end_time);
+              print_time_sum += elapsed;
+              print_time_cnt++;
+              if (elapsed > print_time_max) {
+                  print_time_max = elapsed;
+              }
+              
               buf_count = 0;
           }
       } else {
-          // 如果50ms内没收到新数据，说明可能停止加热了。把缓存里剩下的数据强制打印出来
+          // 如果10ms内没收到新数据，说明可能停止加热了。把缓存里剩下的数据强制打印出来
           if (buf_count > 0) {
+              uint32_t start_time = DWT->CYCCNT;
+              
               for (int i = 0; i < buf_count; i++) {
                   printf("[%lu]%.2f,%.1f,%.3g,%.3g,%.2g\r\n", 
                          print_buf[i].timestamp, 
@@ -278,8 +304,42 @@ __weak void AluSubProgress(void const * argument)
                          print_buf[i].i_out, 
                          print_buf[i].d_out);
               }
+              
+              uint32_t end_time = DWT->CYCCNT;
+              uint32_t elapsed = (end_time >= start_time) ? (end_time - start_time) : (0xFFFFFFFF - start_time + end_time);
+              print_time_sum += elapsed;
+              print_time_cnt++;
+              if (elapsed > print_time_max) {
+                  print_time_max = elapsed;
+              }
+              
               buf_count = 0;
           }
+      }
+      
+      // 每100个循环（约1秒）打印一次耗时统计
+      if (tick_count % 100 == 0) {
+          if (enable_print_timing == 1 && print_time_cnt > 0) {
+              float avg_us = (float)print_time_sum / print_time_cnt / (SystemCoreClock / 1000000.0f);
+              float max_us = (float)print_time_max / (SystemCoreClock / 1000000.0f);
+              printf("\r\n\r\n===== PRINT TIMING (1s) =====\r\n");
+              printf("Max: %.1fus(%.0fcycles), Avg: %.1fus(%.0fcycles), Count: %u\r\n",
+                     max_us, (float)print_time_max, avg_us, (float)print_time_sum / print_time_cnt, (unsigned int)print_time_cnt);
+              printf("=============================\r\n\r\n");
+          }
+          
+          // 每1秒打印一次堆栈信息，无论是否在加热状态
+          if (enable_stack_print == 1) {
+              printf("[STACK] aluMain:%u, Control:%u, SubProg:%u\r\n",
+                     (unsigned int)uxTaskGetStackHighWaterMark(aluMainHandle),
+                     (unsigned int)uxTaskGetStackHighWaterMark(Task_ControlHandle),
+                     (unsigned int)uxTaskGetStackHighWaterMark(aluSubProgressHandle));
+          }
+          
+          // 重置统计变量
+          print_time_max = 0;
+          print_time_sum = 0;
+          print_time_cnt = 0;
       }
   }
   /* USER CODE END AluSubProgress */

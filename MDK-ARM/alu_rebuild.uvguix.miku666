@@ -1815,9 +1815,9 @@
       <ActiveTab>0</ActiveTab>
       <Doc>
         <Name>..\Core\Src\alu_main.c</Name>
-        <ColumnNumber>35</ColumnNumber>
+        <ColumnNumber>0</ColumnNumber>
         <TopLine>23</TopLine>
-        <CurrentLine>42</CurrentLine>
+        <CurrentLine>44</CurrentLine>
         <Folding>1</Folding>
         <ContractedFolders></ContractedFolders>
         <PaneID>0</PaneID>
