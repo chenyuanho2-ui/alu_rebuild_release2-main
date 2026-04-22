@@ -19,11 +19,12 @@
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "usart.h"
-#include "FreeRTOS.h"
-#include "queue.h"
 
 /* USER CODE BEGIN 0 */
 #define UART_RX_RING_SIZE 64
+
+#include "FreeRTOS.h"
+#include "queue.h"
 
 extern QueueHandle_t UartRxQueue;
 

@@ -181,11 +181,11 @@ void MX_FREERTOS_Init(void) {
   defaultTaskHandle = osThreadCreate(osThread(defaultTask), NULL);
 
   /* definition and creation of aluMain */
-  osThreadDef(aluMain, AluMain, osPriorityNormal, 0, 4096);
+  osThreadDef(aluMain, AluMain, osPriorityNormal, 0, 2048);
   aluMainHandle = osThreadCreate(osThread(aluMain), NULL);
 
   /* definition and creation of aluSubProgress */
-  osThreadDef(aluSubProgress, AluSubProgress, osPriorityHigh, 0, 512);
+  osThreadDef(aluSubProgress, AluSubProgress, osPriorityHigh, 0, 2048);
   aluSubProgressHandle = osThreadCreate(osThread(aluSubProgress), NULL);
 
   /* definition and creation of Task_Control */
@@ -367,4 +367,3 @@ for(;;)
 /* USER CODE BEGIN Application */
 
 /* USER CODE END Application */
-

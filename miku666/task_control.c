@@ -8,7 +8,6 @@
 #include "alu_file.h"
 #include "alu_temp.h"
 #include "alu_main.h"
-#include "dac.h"
 #include "core_cm7.h"
 #include <stdio.h>
 #include <string.h>
@@ -61,7 +60,6 @@ void StartTask_Control(void const * argument)
     TempFilter_Init();
     FuzzyPID_init(&fuzzy_pid_TEMP);
     AdvPID_Init(&adv_pid_TEMP, 40.0f, 0.8f, 125.0f);
-    HAL_DAC_Start(&hdac1, DAC_CHANNEL_1);
 
     CoreDebug->DEMCR |= CoreDebug_DEMCR_TRCENA_Msk;
     DWT->CTRL |= DWT_CTRL_CYCCNTENA_Msk;
@@ -156,7 +154,6 @@ void StartTask_Control(void const * argument)
                 HAL_GPIO_WritePin(flag_485_GPIO_Port, flag_485_Pin, GPIO_PIN_RESET);
 
                 __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_4, 1);
-                DAC_SetLaserCurrent(0.0f);
                 need_stop_cleanup = 1;
             }
         }
@@ -172,9 +169,7 @@ void StartTask_Control(void const * argument)
             float pwm_value = 0.0f;
 
             if (laser_test_state == 3) {
-                extern float target_laser_current;
                 extern float target_laser_pwm;
-                DAC_SetLaserCurrent(target_laser_current);
                 pwm_value = target_laser_pwm;
             } else {
                 if (pid_algorithm_type == 0) {

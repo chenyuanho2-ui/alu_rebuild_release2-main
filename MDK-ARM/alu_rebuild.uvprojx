@@ -336,7 +336,7 @@
               <MiscControls></MiscControls>
               <Define>USE_HAL_DRIVER,STM32H750xx</Define>
               <Undefine></Undefine>
-              <IncludePath>../Core/Inc;../FATFS/Target;../FATFS/App;../TouchGFX/App;../TouchGFX/target/generated;../TouchGFX/target;../Drivers/STM32H7xx_HAL_Driver/Inc;../Drivers/STM32H7xx_HAL_Driver/Inc/Legacy;../Middlewares/Third_Party/FreeRTOS/Source/include;../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS;../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F;../Middlewares/Third_Party/FatFs/src;../Drivers/CMSIS/Device/ST/STM32H7xx/Include;../Drivers/CMSIS/Include;../Aluminium/Inc;../middlewares/st/touchgfx/framework/include;../touchgfx/generated/fonts/include;../touchgfx/generated/gui_generated/include;../touchgfx/generated/images/include;../touchgfx/generated/texts/include;../touchgfx/generated/videos/include;../touchgfx/gui/include;../miku666;..\miku666\pid</IncludePath>
+              <IncludePath>../Core/Inc;../FATFS/Target;../FATFS/App;../TouchGFX/App;../TouchGFX/target/generated;../TouchGFX/target;../Drivers/STM32H7xx_HAL_Driver/Inc;../Drivers/STM32H7xx_HAL_Driver/Inc/Legacy;../Middlewares/Third_Party/FreeRTOS/Source/include;../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS;../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F;../Middlewares/Third_Party/FatFs/src;../Drivers/CMSIS/Device/ST/STM32H7xx/Include;../Drivers/CMSIS/Include;../Aluminium/Inc;../middlewares/st/touchgfx/framework/include;../touchgfx/generated/fonts/include;../touchgfx/generated/gui_generated/include;../touchgfx/generated/images/include;../touchgfx/generated/texts/include;../touchgfx/generated/videos/include;../touchgfx/gui/include;../miku666;../miku666/pid</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -414,16 +414,6 @@
               <FileName>crc.c</FileName>
               <FileType>1</FileType>
               <FilePath>../Core/Src/crc.c</FilePath>
-            </File>
-            <File>
-              <FileName>dac.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../Core/Src/dac.c</FilePath>
-            </File>
-            <File>
-              <FileName>dma.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../Core/Src/dma.c</FilePath>
             </File>
             <File>
               <FileName>dma2d.c</FileName>
@@ -669,16 +659,6 @@
               <FileName>stm32h7xx_hal_exti.c</FileName>
               <FileType>1</FileType>
               <FilePath>../Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_exti.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32h7xx_hal_dac.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_dac.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32h7xx_hal_dac_ex.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_dac_ex.c</FilePath>
             </File>
             <File>
               <FileName>stm32h7xx_hal_dma2d.c</FileName>
