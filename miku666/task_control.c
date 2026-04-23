@@ -83,6 +83,8 @@ void StartTask_Control(void const * argument)
     uint32_t temp_count_1s = 0;  // 1s采样计数
     float temp_avg_1s = 0.0f;  // 1s平均温度
 
+    static SD_DataPacket_t current_packet;
+    static uint8_t tick_count = 0;
 
 
     for(;;)
@@ -195,17 +197,104 @@ void StartTask_Control(void const * argument)
         }
 
         // ================================================
-        // 200ms间隔: 冷端补偿更新 + SD卡数据写入 + 温度打印(非加热时)
+        // 100ms间隔: 存储PID系数到p[0], i[0], d[0]
+        // ================================================
+        if (is_heating_active == 1) {
+            float p_out = 0.0f, i_out = 0.0f, d_out = 0.0f;
+            if (pid_algorithm_type == 0) {
+                p_out = pid_TEMP.speed[0];
+                i_out = pid_TEMP.speed[1];
+                d_out = pid_TEMP.speed[2];
+            } else if (pid_algorithm_type == 1) {
+                p_out = fuzzy_pid_TEMP.speed[0];
+                i_out = fuzzy_pid_TEMP.speed[1];
+                d_out = fuzzy_pid_TEMP.speed[2];
+            } else {
+                p_out = adv_pid_TEMP.speed[0];
+                i_out = adv_pid_TEMP.speed[1];
+                d_out = adv_pid_TEMP.speed[2];
+            }
+
+            if (tick_count == 10) {
+                current_packet.p[0] = (int16_t)(p_out * 100.0f);
+                current_packet.i[0] = (int16_t)(i_out * 100.0f);
+                current_packet.d[0] = (int16_t)(d_out * 100.0f);
+            }
+
+            if (tick_count >= 20) {
+                Thermocouple_UpdateColdJunction();
+
+                float temp_sorted[TRIM_SAMPLES];
+                float pwm_sorted[TRIM_SAMPLES];
+
+                for (int i = 0; i < TRIM_SAMPLES; i++) {
+                    temp_sorted[i] = temp_buffer[i];
+                    pwm_sorted[i] = pwm_buffer[i];
+                }
+
+                for (int i = 0; i < TRIM_SAMPLES - 1; i++) {
+                    for (int j = 0; j < TRIM_SAMPLES - i - 1; j++) {
+                        if (temp_sorted[j] > temp_sorted[j + 1]) {
+                            float temp = temp_sorted[j];
+                            temp_sorted[j] = temp_sorted[j + 1];
+                            temp_sorted[j + 1] = temp;
+                        }
+                    }
+                }
+
+                for (int i = 0; i < TRIM_SAMPLES - 1; i++) {
+                    for (int j = 0; j < TRIM_SAMPLES - i - 1; j++) {
+                        if (pwm_sorted[j] > pwm_sorted[j + 1]) {
+                            float temp = pwm_sorted[j];
+                            pwm_sorted[j] = pwm_sorted[j + 1];
+                            pwm_sorted[j + 1] = temp;
+                        }
+                    }
+                }
+
+                float temp_sum = 0.0f;
+                for (int i = TRIM_REMOVE; i < TRIM_SAMPLES - TRIM_REMOVE; i++) {
+                    temp_sum += temp_sorted[i];
+                }
+                temp_avg_200ms = temp_sum / (TRIM_SAMPLES - 2 * TRIM_REMOVE);
+
+                float pwm_sum = 0.0f;
+                for (int i = TRIM_REMOVE; i < TRIM_SAMPLES - TRIM_REMOVE; i++) {
+                    pwm_sum += pwm_sorted[i];
+                }
+                pwm_avg_200ms = pwm_sum / (TRIM_SAMPLES - 2 * TRIM_REMOVE);
+
+                if (is_heating_active == 0 && is_serial_interacting == 0 && uart_pid_state == 0) {
+                    printf("%.2f(off)\r\n", temp_avg_200ms);
+                }
+
+                current_packet.timestamp = tick_10ms * 10;
+                current_packet.temp = (int16_t)(temp_avg_200ms * 100.0f);
+                current_packet.pwm = (int16_t)(pwm_avg_200ms * 100.0f);
+                current_packet.p[1] = (int16_t)(p_out * 100.0f);
+                current_packet.i[1] = (int16_t)(i_out * 100.0f);
+                current_packet.d[1] = (int16_t)(d_out * 100.0f);
+
+                if (sd_record_enable && SDWriteQueueHandle != NULL) {
+                    xQueueSend(SDWriteQueueHandle, &current_packet, 0);
+                }
+
+                tick_count = 0;
+            }
+
+            tick_count++;
+        }
+
+        // ================================================
+        // 200ms间隔: 非加热时打印温度
         // ================================================
         if (tick_10ms % 20 == 0) {
             Thermocouple_UpdateColdJunction();
 
             float temp_sorted[TRIM_SAMPLES];
-            float pwm_sorted[TRIM_SAMPLES];
             
             for (int i = 0; i < TRIM_SAMPLES; i++) {
                 temp_sorted[i] = temp_buffer[i];
-                pwm_sorted[i] = pwm_buffer[i];
             }
             
             for (int i = 0; i < TRIM_SAMPLES - 1; i++) {
@@ -218,56 +307,14 @@ void StartTask_Control(void const * argument)
                 }
             }
             
-            for (int i = 0; i < TRIM_SAMPLES - 1; i++) {
-                for (int j = 0; j < TRIM_SAMPLES - i - 1; j++) {
-                    if (pwm_sorted[j] > pwm_sorted[j + 1]) {
-                        float temp = pwm_sorted[j];
-                        pwm_sorted[j] = pwm_sorted[j + 1];
-                        pwm_sorted[j + 1] = temp;
-                    }
-                }
-            }
-            
             float temp_sum = 0.0f;
             for (int i = TRIM_REMOVE; i < TRIM_SAMPLES - TRIM_REMOVE; i++) {
                 temp_sum += temp_sorted[i];
             }
             temp_avg_200ms = temp_sum / (TRIM_SAMPLES - 2 * TRIM_REMOVE);
-            
-            float pwm_sum = 0.0f;
-            for (int i = TRIM_REMOVE; i < TRIM_SAMPLES - TRIM_REMOVE; i++) {
-                pwm_sum += pwm_sorted[i];
-            }
-            pwm_avg_200ms = pwm_sum / (TRIM_SAMPLES - 2 * TRIM_REMOVE);
 
             if (is_heating_active == 0 && is_serial_interacting == 0 && uart_pid_state == 0) {
-                printf("%.2f(off)\r\n", temp_avg_200ms);  // 非加热时200ms平均打印一次
-            }
-
-            if (is_heating_active == 1) {
-                char BufferWrite[64] = {0};
-                float sd_p_out, sd_i_out, sd_d_out;
-                if (pid_algorithm_type == 0) {
-                    sd_p_out = pid_TEMP.speed[0];
-                    sd_i_out = pid_TEMP.speed[1];
-                    sd_d_out = pid_TEMP.speed[2];
-                } else if (pid_algorithm_type == 1) {
-                    sd_p_out = fuzzy_pid_TEMP.speed[0];
-                    sd_i_out = fuzzy_pid_TEMP.speed[1];
-                    sd_d_out = fuzzy_pid_TEMP.speed[2];
-                } else {
-                    sd_p_out = adv_pid_TEMP.speed[0];
-                    sd_i_out = adv_pid_TEMP.speed[1];
-                    sd_d_out = adv_pid_TEMP.speed[2];
-                }
-                sprintf(BufferWrite, "\n%u,%.2f,%.3g,%.3g,%.2g,%.1f",
-                    tick_10ms * 10, temp_avg_200ms,
-                    sd_p_out, sd_i_out, sd_d_out,
-                    pwm_avg_200ms * 100.0f);
-
-                if (sd_record_enable && SDWriteQueueHandle != NULL) {
-                    xQueueSend(SDWriteQueueHandle, BufferWrite, 0);
-                }
+                printf("%.2f(off)\r\n", temp_avg_200ms);
             }
         }
 

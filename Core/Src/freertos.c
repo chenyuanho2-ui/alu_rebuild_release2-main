@@ -271,12 +271,12 @@ __weak void AluSubProgress(void const * argument)
               uint32_t start_time = DWT->CYCCNT;
               
               for (int i = 0; i < buf_count; i++) {
-                  printf("[%lu]%.2f,%.3g,%.3g,%.2g,%.1f\r\n", 
+                  printf("[%u]%.2f,%.4g,%.4g,%.4g,%.2f\r\n", 
                          print_buf[i].timestamp, 
                          print_buf[i].current_temp, 
                          print_buf[i].p_out, 
                          print_buf[i].i_out, 
-                         print_buf[i].d_out,
+                         print_buf[i].d_out * 100.0f,
                          print_buf[i].pwm_out);
               }
               
@@ -296,12 +296,12 @@ __weak void AluSubProgress(void const * argument)
               uint32_t start_time = DWT->CYCCNT;
               
               for (int i = 0; i < buf_count; i++) {
-                  printf("[%lu]%.2f,%.3g,%.3g,%.2g,%.1f\r\n", 
+                  printf("[%lu]%.2f,%.4g,%.4g,%.4g,%.2f\r\n", 
                          print_buf[i].timestamp, 
                          print_buf[i].current_temp, 
                          print_buf[i].p_out, 
                          print_buf[i].i_out, 
-                         print_buf[i].d_out,
+                         print_buf[i].d_out * 100.0f,
                          print_buf[i].pwm_out);
               }
               

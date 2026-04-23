@@ -7,6 +7,7 @@
 #include "fuzzy_pid.h"
 #include "advanced_pid.h"
 #include "pid.h"
+#include "task_control.h"
 #include "../miku666/tec_handler.h"
 #include <stdio.h>
 #include <stdlib.h>
@@ -39,8 +40,8 @@ uint8_t enable_pid_tune = 1;       // PID串口调试使能：0=禁用，1=启�
 uint8_t enable_laser_test = 0;     // 激光测试模式使能：0=禁用，1=启用(通过laseron指令)
 uint8_t sd_record_enable = 1;             // SD卡温度数据记录使能：1=记录，0=禁用
 uint8_t sd_pid_save_enable = 1;           // SD卡PID参数保存使能：1=保存，0=禁用
-uint8_t enable_stack_print = 1;          // 堆栈打印使能：0=禁用，1=启用(每1s打印任务堆栈)
-uint8_t enable_print_timing = 1;         // 打印耗时统计使能：0=禁用，1=启用(每1s打印最长打印耗时和内容)
+uint8_t enable_stack_print = 0;          // 堆栈打印使能：0=禁用，1=启用(每1s打印任务堆栈)
+uint8_t enable_print_timing = 0;         // 打印耗时统计使能：0=禁用，1=启用(每1s打印最长打印耗时和内容)
 uint8_t enable_sd_write_timing = 0;      // SD卡写入耗时调试：0=禁用，1=启用(每记录一条数据打印写入全程耗时)
 
 // ================================================
@@ -131,7 +132,7 @@ void AluMain(void const * argument)
   num_file = Alu_SD_csv_num("/") + 1; 
   
   if (SDWriteQueueHandle == NULL) {
-      SDWriteQueueHandle = xQueueCreate(20, 64); // 创建SD卡异步写入队列
+      SDWriteQueueHandle = xQueueCreate(50, sizeof(SD_DataPacket_t)); // 创建SD卡异步写入队列
   }
   if (UartRxQueue == NULL) {
       UartRxQueue = xQueueCreate(10, 64);  // 创建串口接收队列
@@ -143,19 +144,19 @@ void AluMain(void const * argument)
   index_screen = 0;
   osSemaphoreRelease(alu_screenHandle);
   
-  long btns_statu = 0;  
-  char recv_buf[64]; 
-  
+  long btns_statu = 0;
+  SD_DataPacket_t recv_buf;
+
   for(;;)
   {
       // 1. 调用 TEC 轮询函数
       TEC_Tick();
-      
+
       // 2. 后台极速处理 SD 卡写入请求 (绝对不卡主循环)
       if (SDWriteQueueHandle != NULL) {
-          while (xQueueReceive(SDWriteQueueHandle, recv_buf, 0) == pdTRUE) {
+          while (xQueueReceive(SDWriteQueueHandle, &recv_buf, 0) == pdTRUE) {
               uint32_t sd_write_start = HAL_GetTick();
-              Alu_SD_write((uint8_t*)recv_buf, strlen(recv_buf), current_file_name);
+              Alu_SD_write((uint8_t*)&recv_buf, sizeof(SD_DataPacket_t), current_file_name);
               uint32_t sd_write_end = HAL_GetTick();
               if (enable_sd_write_timing == 1) {
                   printf("[SD Timing] write time: %lu ms\r\n", sd_write_end - sd_write_start);
@@ -263,35 +264,56 @@ void AluMain(void const * argument)
                   } else if (strncmp(uart_buf, "data", 4) == 0 || strncmp(uart_buf, "DATA", 4) == 0) {
                       if (is_heating_active == 0) {
                           is_serial_interacting = 1;
-                          
+
                           int file_num = atoi(uart_buf + 4);
                           if (file_num <= 0) {
                               printf("Usage: DATAn (n=file number)\r\n");
                               is_serial_interacting = 0;
                           } else {
                               char target_file[32];
-                              sprintf(target_file, "data_%d.csv", file_num);
-                              
+                              sprintf(target_file, "data_%d.bin", file_num);
+
                               printf("=== SD Card Data: %s ===\r\n", target_file);
-                              
+
                               FIL file;
                               FRESULT res;
-                              char read_buf[128];
-                              
+                              SD_DataPacket_t packet;
+                              UINT bytes_read;
+                              uint32_t record_count = 0;
+
                               res = f_open(&file, target_file, FA_READ);
                               if (res == FR_OK) {
-                                  printf("Content:\r\n");
-                                  
-                                  while (f_gets(read_buf, sizeof(read_buf), &file)) {
-                                      printf("%s", read_buf);
+                                  printf("%-12s %-10s %-8s %-12s %-12s %-12s\r\n",
+                                         "Time(ms)", "Temp(C)", "PWM", "P(100|200)", "I(100|200)", "D(100|200)");
+                                  printf("%s\r\n", "----------------------------------------------------------------------");
+
+                                  while (f_read(&file, &packet, sizeof(SD_DataPacket_t), &bytes_read) == FR_OK && bytes_read == sizeof(SD_DataPacket_t)) {
+                                      record_count++;
+                                      float temp_val = packet.temp / 100.0f;
+                                      float pwm_val = packet.pwm / 100.0f;
+                                      float p_100 = packet.p[0] / 100.0f;
+                                      float p_200 = packet.p[1] / 100.0f;
+                                      float i_100 = packet.i[0] / 100.0f;
+                                      float i_200 = packet.i[1] / 100.0f;
+                                      float d_100 = packet.d[0] / 100.0f;
+                                      float d_200 = packet.d[1] / 100.0f;
+
+                                      printf("%-12u %-10.2f %-8.2f %6.2f|%6.2f %6.2f|%6.2f %6.2f|%6.2f\r\n",
+                                             (unsigned int)packet.timestamp,
+                                             temp_val, pwm_val,
+                                             p_100, p_200,
+                                             i_100, i_200,
+                                             d_100, d_200);
                                       osDelay(10);
                                   }
-                                  
+
                                   f_close(&file);
+                                  printf("----------------------------------------------------------------------\r\n");
+                                  printf("Total records: %u\r\n", (unsigned int)record_count);
                               } else {
                                   printf("File not found: %s (res=%d)\r\n", target_file, res);
                               }
-                              
+
                               printf("==================\r\n");
                               is_serial_interacting = 0;
                           }
