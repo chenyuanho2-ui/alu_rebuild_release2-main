@@ -199,6 +199,22 @@ void Alu_sniff_files(AluDynList* list, const TCHAR *sniff_path){
             continue;  // 忽略file_cfg.txt配置文件
         }
 
+        if (strncmp(AluFile_info.fname, "pid_base", 8) == 0) {
+            continue;  // 忽略pid_base.txt配置文件
+        }
+
+        if (strncmp(AluFile_info.fname, "pid_adv", 7) == 0) {
+            continue;  // 忽略pid_adv.txt配置文件
+        }
+
+        if (strncmp(AluFile_info.fname, "pid_mode", 8) == 0) {
+            continue;  // 忽略pid_mode.txt配置文件
+        }
+
+        if (strncmp(AluFile_info.fname, "pid_fuzzy", 9) == 0) {
+            continue;  // 忽略pid_fuzzy.txt配置文件
+        }
+
         Alu_list_add(list, AluFile_info.fname);
     }
 

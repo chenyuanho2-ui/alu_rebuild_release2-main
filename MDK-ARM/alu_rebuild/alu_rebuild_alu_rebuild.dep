@@ -1,6 +1,6 @@
 Dependencies for Project 'alu_rebuild', Target 'alu_rebuild': (DO NOT MODIFY !)
 F (startup_stm32h750xx.s)(0x69E98918)(--cpu Cortex-M7.fp.dp --apcs=interwork -I ../Core/Inc-I.\RTE\_alu_rebuild-ID:\keil5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include-ID:\keil5\ARM\PACK\Keil\STM32H7xx_DFP\3.0.0\Drivers\CMSIS\Device\ST\STM32H7xx\Include--pd "__UVISION_VERSION SETA 524" --pd "_RTE_ SETA 1" --pd "STM32H750xx SETA 1"--list .\listings\startup_stm32h750xx.lst --xref -o .\alu_rebuild\startup_stm32h750xx.o --depend .\alu_rebuild\startup_stm32h750xx.d)
-F (..\Core\Src\alu_main.c)(0x69E9A008)(--c99 -c --cpu Cortex-M7.fp.dp -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../FATFS/Target -I ../FATFS/App -I ../TouchGFX/App -I ../TouchGFX/target/generated -I ../TouchGFX/target -I ../Drivers/STM32H7xx_HAL_Driver/Inc -I ../Drivers/STM32H7xx_HAL_Driver/Inc/Legacy -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F -I ../Middlewares/Third_Party/FatFs/src -I ../Drivers/CMSIS/Device/ST/STM32H7xx/Include -I ../Drivers/CMSIS/Include -I ../Aluminium/Inc -I ../middlewares/st/touchgfx/framework/include -I ../touchgfx/generated/fonts/include -I ../touchgfx/generated/gui_generated/include -I ../touchgfx/generated/images/include -I ../touchgfx/generated/texts/include -I ../touchgfx/generated/videos/include -I ../touchgfx/gui/include -I ../miku666 -I ../miku666/pid-I.\RTE\_alu_rebuild-ID:\keil5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include-ID:\keil5\ARM\PACK\Keil\STM32H7xx_DFP\3.0.0\Drivers\CMSIS\Device\ST\STM32H7xx\Include-D__UVISION_VERSION="524" -D_RTE_ -DSTM32H750xx -DUSE_HAL_DRIVER -DSTM32H750xx-o .\alu_rebuild\alu_main.o --depend .\alu_rebuild\alu_main.d)
+F (..\Core\Src\alu_main.c)(0x69E9C4F0)(--c99 -c --cpu Cortex-M7.fp.dp -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../FATFS/Target -I ../FATFS/App -I ../TouchGFX/App -I ../TouchGFX/target/generated -I ../TouchGFX/target -I ../Drivers/STM32H7xx_HAL_Driver/Inc -I ../Drivers/STM32H7xx_HAL_Driver/Inc/Legacy -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F -I ../Middlewares/Third_Party/FatFs/src -I ../Drivers/CMSIS/Device/ST/STM32H7xx/Include -I ../Drivers/CMSIS/Include -I ../Aluminium/Inc -I ../middlewares/st/touchgfx/framework/include -I ../touchgfx/generated/fonts/include -I ../touchgfx/generated/gui_generated/include -I ../touchgfx/generated/images/include -I ../touchgfx/generated/texts/include -I ../touchgfx/generated/videos/include -I ../touchgfx/gui/include -I ../miku666 -I ../miku666/pid-I.\RTE\_alu_rebuild-ID:\keil5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include-ID:\keil5\ARM\PACK\Keil\STM32H7xx_DFP\3.0.0\Drivers\CMSIS\Device\ST\STM32H7xx\Include-D__UVISION_VERSION="524" -D_RTE_ -DSTM32H750xx -DUSE_HAL_DRIVER -DSTM32H750xx-o .\alu_rebuild\alu_main.o --depend .\alu_rebuild\alu_main.d)
 I (../Core/Inc/alu_main.h)(0x69E2FC58)
 I (../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.h)(0x676B99CF)
 I (../Middlewares/Third_Party/FreeRTOS/Source/include/FreeRTOS.h)(0x676B99CF)
@@ -71,7 +71,7 @@ I (D:\keil5\ARM\ARMCC\include\stdio.h)(0x588B8344)
 I (../miku666/pid/pid.h)(0x69E2FC58)
 I (../miku666/pid/fuzzy_pid.h)(0x69E2FC58)
 I (../miku666/pid/advanced_pid.h)(0x69E2FC58)
-I (../Aluminium/Inc/alu_file.h)(0x69E8ADFF)
+I (../Aluminium/Inc/alu_file.h)(0x69E9C3E2)
 I (../FATFS/App/fatfs.h)(0x69E8745D)
 I (../Middlewares/Third_Party/FatFs/src/ff.h)(0x676B99FE)
 I (../Middlewares/Third_Party/FatFs/src/integer.h)(0x676B99FE)
@@ -85,7 +85,7 @@ I (D:\keil5\ARM\ARMCC\include\stdlib.h)(0x588B8344)
 I (D:\keil5\ARM\ARMCC\include\string.h)(0x588B8344)
 I (../Core/Inc/tim.h)(0x69E87461)
 I (../miku666/pid/pid_storage.h)(0x69E2FC58)
-I (../miku666/task_control.h)(0x69E99973)
+I (../miku666/task_control.h)(0x69E9C4F0)
 I (../miku666/../miku666/tec_handler.h)(0x69E98E1B)
 F (../Core/Src/main.c)(0x69E8ADFF)(--c99 -c --cpu Cortex-M7.fp.dp -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../FATFS/Target -I ../FATFS/App -I ../TouchGFX/App -I ../TouchGFX/target/generated -I ../TouchGFX/target -I ../Drivers/STM32H7xx_HAL_Driver/Inc -I ../Drivers/STM32H7xx_HAL_Driver/Inc/Legacy -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F -I ../Middlewares/Third_Party/FatFs/src -I ../Drivers/CMSIS/Device/ST/STM32H7xx/Include -I ../Drivers/CMSIS/Include -I ../Aluminium/Inc -I ../middlewares/st/touchgfx/framework/include -I ../touchgfx/generated/fonts/include -I ../touchgfx/generated/gui_generated/include -I ../touchgfx/generated/images/include -I ../touchgfx/generated/texts/include -I ../touchgfx/generated/videos/include -I ../touchgfx/gui/include -I ../miku666 -I ../miku666/pid-I.\RTE\_alu_rebuild-ID:\keil5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include-ID:\keil5\ARM\PACK\Keil\STM32H7xx_DFP\3.0.0\Drivers\CMSIS\Device\ST\STM32H7xx\Include-D__UVISION_VERSION="524" -D_RTE_ -DSTM32H750xx -DUSE_HAL_DRIVER -DSTM32H750xx-o .\alu_rebuild\main.o --depend .\alu_rebuild\main.d)
 I (../Core/Inc/main.h)(0x69E87464)
@@ -174,7 +174,7 @@ I (../Core/Inc/fmc.h)(0x69E8745E)
 I (../TouchGFX/App/app_touchgfx.h)(0x69E87460)
 I (../Aluminium/Inc/touch_800x480.h)(0x69E2FC58)
 I (../Aluminium/Inc/touch_iic.h)(0x69E2FC58)
-I (../Aluminium/Inc/alu_file.h)(0x69E8ADFF)
+I (../Aluminium/Inc/alu_file.h)(0x69E9C3E2)
 I (D:\keil5\ARM\ARMCC\include\stdlib.h)(0x588B8344)
 I (D:\keil5\ARM\ARMCC\include\string.h)(0x588B8344)
 I (../Aluminium/Inc/alu_temp.h)(0x69E2FC58)
@@ -234,7 +234,7 @@ I (../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_tim.h)(0x676B99FD)
 I (../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_tim_ex.h)(0x676B99FD)
 I (../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_uart.h)(0x676B99FD)
 I (../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_uart_ex.h)(0x676B99FD)
-F (../Core/Src/freertos.c)(0x69E9A008)(--c99 -c --cpu Cortex-M7.fp.dp -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../FATFS/Target -I ../FATFS/App -I ../TouchGFX/App -I ../TouchGFX/target/generated -I ../TouchGFX/target -I ../Drivers/STM32H7xx_HAL_Driver/Inc -I ../Drivers/STM32H7xx_HAL_Driver/Inc/Legacy -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F -I ../Middlewares/Third_Party/FatFs/src -I ../Drivers/CMSIS/Device/ST/STM32H7xx/Include -I ../Drivers/CMSIS/Include -I ../Aluminium/Inc -I ../middlewares/st/touchgfx/framework/include -I ../touchgfx/generated/fonts/include -I ../touchgfx/generated/gui_generated/include -I ../touchgfx/generated/images/include -I ../touchgfx/generated/texts/include -I ../touchgfx/generated/videos/include -I ../touchgfx/gui/include -I ../miku666 -I ../miku666/pid-I.\RTE\_alu_rebuild-ID:\keil5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include-ID:\keil5\ARM\PACK\Keil\STM32H7xx_DFP\3.0.0\Drivers\CMSIS\Device\ST\STM32H7xx\Include-D__UVISION_VERSION="524" -D_RTE_ -DSTM32H750xx -DUSE_HAL_DRIVER -DSTM32H750xx-o .\alu_rebuild\freertos.o --depend .\alu_rebuild\freertos.d)
+F (../Core/Src/freertos.c)(0x69E9C4F0)(--c99 -c --cpu Cortex-M7.fp.dp -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../FATFS/Target -I ../FATFS/App -I ../TouchGFX/App -I ../TouchGFX/target/generated -I ../TouchGFX/target -I ../Drivers/STM32H7xx_HAL_Driver/Inc -I ../Drivers/STM32H7xx_HAL_Driver/Inc/Legacy -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F -I ../Middlewares/Third_Party/FatFs/src -I ../Drivers/CMSIS/Device/ST/STM32H7xx/Include -I ../Drivers/CMSIS/Include -I ../Aluminium/Inc -I ../middlewares/st/touchgfx/framework/include -I ../touchgfx/generated/fonts/include -I ../touchgfx/generated/gui_generated/include -I ../touchgfx/generated/images/include -I ../touchgfx/generated/texts/include -I ../touchgfx/generated/videos/include -I ../touchgfx/gui/include -I ../miku666 -I ../miku666/pid-I.\RTE\_alu_rebuild-ID:\keil5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include-ID:\keil5\ARM\PACK\Keil\STM32H7xx_DFP\3.0.0\Drivers\CMSIS\Device\ST\STM32H7xx\Include-D__UVISION_VERSION="524" -D_RTE_ -DSTM32H750xx -DUSE_HAL_DRIVER -DSTM32H750xx-o .\alu_rebuild\freertos.o --depend .\alu_rebuild\freertos.d)
 I (../Middlewares/Third_Party/FreeRTOS/Source/include/FreeRTOS.h)(0x676B99CF)
 I (D:\keil5\ARM\ARMCC\include\stddef.h)(0x588B8344)
 I (D:\keil5\ARM\ARMCC\include\stdint.h)(0x588B8344)
@@ -307,7 +307,7 @@ I (D:\keil5\ARM\ARMCC\include\stdio.h)(0x588B8344)
 I (../miku666/pid/pid.h)(0x69E2FC58)
 I (../miku666/pid/fuzzy_pid.h)(0x69E2FC58)
 I (../miku666/pid/advanced_pid.h)(0x69E2FC58)
-I (../Aluminium/Inc/alu_file.h)(0x69E8ADFF)
+I (../Aluminium/Inc/alu_file.h)(0x69E9C3E2)
 I (../FATFS/App/fatfs.h)(0x69E8745D)
 I (../Middlewares/Third_Party/FatFs/src/ff.h)(0x676B99FE)
 I (../Middlewares/Third_Party/FatFs/src/integer.h)(0x676B99FE)
@@ -319,7 +319,7 @@ I (../Middlewares/Third_Party/FatFs/src/diskio.h)(0x676B99FE)
 I (../FATFS/Target/sd_diskio.h)(0x69E8745D)
 I (D:\keil5\ARM\ARMCC\include\stdlib.h)(0x588B8344)
 I (D:\keil5\ARM\ARMCC\include\string.h)(0x588B8344)
-I (../miku666/task_control.h)(0x69E99973)
+I (../miku666/task_control.h)(0x69E9C4F0)
 I (../Core/Inc/alu_main.h)(0x69E2FC58)
 F (../Core/Src/crc.c)(0x69E8745B)(--c99 -c --cpu Cortex-M7.fp.dp -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../FATFS/Target -I ../FATFS/App -I ../TouchGFX/App -I ../TouchGFX/target/generated -I ../TouchGFX/target -I ../Drivers/STM32H7xx_HAL_Driver/Inc -I ../Drivers/STM32H7xx_HAL_Driver/Inc/Legacy -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F -I ../Middlewares/Third_Party/FatFs/src -I ../Drivers/CMSIS/Device/ST/STM32H7xx/Include -I ../Drivers/CMSIS/Include -I ../Aluminium/Inc -I ../middlewares/st/touchgfx/framework/include -I ../touchgfx/generated/fonts/include -I ../touchgfx/generated/gui_generated/include -I ../touchgfx/generated/images/include -I ../touchgfx/generated/texts/include -I ../touchgfx/generated/videos/include -I ../touchgfx/gui/include -I ../miku666 -I ../miku666/pid-I.\RTE\_alu_rebuild-ID:\keil5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include-ID:\keil5\ARM\PACK\Keil\STM32H7xx_DFP\3.0.0\Drivers\CMSIS\Device\ST\STM32H7xx\Include-D__UVISION_VERSION="524" -D_RTE_ -DSTM32H750xx -DUSE_HAL_DRIVER -DSTM32H750xx-o .\alu_rebuild\crc.o --depend .\alu_rebuild\crc.d)
 I (../Core/Inc/crc.h)(0x69E8745B)
@@ -1219,7 +1219,7 @@ I (D:\keil5\ARM\ARMCC\include\stdarg.h)(0x588B8344)
 I (../middlewares/st/touchgfx/framework/include/touchgfx/TextProvider.hpp)(0x62B1662A)
 I (../middlewares/st/touchgfx/framework/include/touchgfx/TextureMapTypes.hpp)(0x62B1662A)
 I (../middlewares/st/touchgfx/framework/include/touchgfx/lcd/DebugPrinter.hpp)(0x62B1662A)
-F (../TouchGFX/target/STM32TouchController.cpp)(0x69E87461)(--cpp -c --cpu Cortex-M7.fp.dp -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../FATFS/Target -I ../FATFS/App -I ../TouchGFX/App -I ../TouchGFX/target/generated -I ../TouchGFX/target -I ../Drivers/STM32H7xx_HAL_Driver/Inc -I ../Drivers/STM32H7xx_HAL_Driver/Inc/Legacy -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F -I ../Middlewares/Third_Party/FatFs/src -I ../Drivers/CMSIS/Device/ST/STM32H7xx/Include -I ../Drivers/CMSIS/Include -I ../Aluminium/Inc -I ../middlewares/st/touchgfx/framework/include -I ../touchgfx/generated/fonts/include -I ../touchgfx/generated/gui_generated/include -I ../touchgfx/generated/images/include -I ../touchgfx/generated/texts/include -I ../touchgfx/generated/videos/include -I ../touchgfx/gui/include -I ../miku666 -I ../miku666/pid-I.\RTE\_alu_rebuild-ID:\keil5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include-ID:\keil5\ARM\PACK\Keil\STM32H7xx_DFP\3.0.0\Drivers\CMSIS\Device\ST\STM32H7xx\Include-D__UVISION_VERSION="524" -D_RTE_ -DSTM32H750xx -DUSE_HAL_DRIVER -DSTM32H750xx-o .\alu_rebuild\stm32touchcontroller.o --depend .\alu_rebuild\stm32touchcontroller.d)
+F (../TouchGFX/target/STM32TouchController.cpp)(0x69E9CAA4)(--cpp -c --cpu Cortex-M7.fp.dp -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../FATFS/Target -I ../FATFS/App -I ../TouchGFX/App -I ../TouchGFX/target/generated -I ../TouchGFX/target -I ../Drivers/STM32H7xx_HAL_Driver/Inc -I ../Drivers/STM32H7xx_HAL_Driver/Inc/Legacy -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F -I ../Middlewares/Third_Party/FatFs/src -I ../Drivers/CMSIS/Device/ST/STM32H7xx/Include -I ../Drivers/CMSIS/Include -I ../Aluminium/Inc -I ../middlewares/st/touchgfx/framework/include -I ../touchgfx/generated/fonts/include -I ../touchgfx/generated/gui_generated/include -I ../touchgfx/generated/images/include -I ../touchgfx/generated/texts/include -I ../touchgfx/generated/videos/include -I ../touchgfx/gui/include -I ../miku666 -I ../miku666/pid-I.\RTE\_alu_rebuild-ID:\keil5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include-ID:\keil5\ARM\PACK\Keil\STM32H7xx_DFP\3.0.0\Drivers\CMSIS\Device\ST\STM32H7xx\Include-D__UVISION_VERSION="524" -D_RTE_ -DSTM32H750xx -DUSE_HAL_DRIVER -DSTM32H750xx-o .\alu_rebuild\stm32touchcontroller.o --depend .\alu_rebuild\stm32touchcontroller.d)
 I (../TouchGFX/target/STM32TouchController.hpp)(0x69E87460)
 I (../middlewares/st/touchgfx/framework/include/platform/driver/touch/TouchController.hpp)(0x62B1662A)
 I (../middlewares/st/touchgfx/framework/include/touchgfx/hal/Types.hpp)(0x62B1662A)
@@ -1379,7 +1379,7 @@ I (../middlewares/st/touchgfx/framework/include/touchgfx/hal/Atomic.hpp)(0x62B16
 I (../middlewares/st/touchgfx/framework/include/touchgfx/hal/FrameBufferAllocator.hpp)(0x62B1662A)
 I (../middlewares/st/touchgfx/framework/include/touchgfx/hal/Gestures.hpp)(0x62B1662A)
 I (../touchgfx/gui/include/gui/model/Model.hpp)(0x69E2FC58)
-I (../Aluminium/Inc/alu_file.h)(0x69E8ADFF)
+I (../Aluminium/Inc/alu_file.h)(0x69E9C3E2)
 I (../Core/Inc/main.h)(0x69E87464)
 I (../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal.h)(0x676B99FD)
 I (../Core/Inc/stm32h7xx_hal_conf.h)(0x69E8ADFF)
@@ -1553,7 +1553,7 @@ I (D:\keil5\ARM\ARMCC\include\exception)(0x588B8344)
 I (../middlewares/st/touchgfx/framework/include/mvp/Presenter.hpp)(0x62B1662A)
 I (../middlewares/st/touchgfx/framework/include/touchgfx/Screen.hpp)(0x62B1662A)
 I (../touchgfx/gui/include/gui/model/Model.hpp)(0x69E2FC58)
-I (../Aluminium/Inc/alu_file.h)(0x69E8ADFF)
+I (../Aluminium/Inc/alu_file.h)(0x69E9C3E2)
 I (../Core/Inc/main.h)(0x69E87464)
 I (../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal.h)(0x676B99FD)
 I (../Core/Inc/stm32h7xx_hal_conf.h)(0x69E8ADFF)
@@ -4252,7 +4252,7 @@ I (../middlewares/st/touchgfx/framework/include/touchgfx/hal/FrameBufferAllocato
 I (../middlewares/st/touchgfx/framework/include/touchgfx/hal/Gestures.hpp)(0x62B1662A)
 I (../middlewares/st/touchgfx/framework/include/touchgfx/transitions/Transition.hpp)(0x62B1662A)
 I (../touchgfx/gui/include/gui/model/Model.hpp)(0x69E2FC58)
-I (../Aluminium/Inc/alu_file.h)(0x69E8ADFF)
+I (../Aluminium/Inc/alu_file.h)(0x69E9C3E2)
 I (../Core/Inc/main.h)(0x69E87464)
 I (../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal.h)(0x676B99FD)
 I (../Core/Inc/stm32h7xx_hal_conf.h)(0x69E8ADFF)
@@ -4378,7 +4378,7 @@ I (../middlewares/st/touchgfx/framework/include/touchgfx/hal/FrameBufferAllocato
 I (../middlewares/st/touchgfx/framework/include/touchgfx/hal/Gestures.hpp)(0x62B1662A)
 I (../middlewares/st/touchgfx/framework/include/touchgfx/transitions/Transition.hpp)(0x62B1662A)
 I (../touchgfx/gui/include/gui/model/Model.hpp)(0x69E2FC58)
-I (../Aluminium/Inc/alu_file.h)(0x69E8ADFF)
+I (../Aluminium/Inc/alu_file.h)(0x69E9C3E2)
 I (../Core/Inc/main.h)(0x69E87464)
 I (../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal.h)(0x676B99FD)
 I (../Core/Inc/stm32h7xx_hal_conf.h)(0x69E8ADFF)
@@ -4454,7 +4454,7 @@ I (D:\keil5\ARM\ARMCC\include\stdlib.h)(0x588B8344)
 I (D:\keil5\ARM\ARMCC\include\string.h)(0x588B8344)
 F (../touchgfx/gui/src/model/model.cpp)(0x69E2FC58)(--cpp -c --cpu Cortex-M7.fp.dp -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../FATFS/Target -I ../FATFS/App -I ../TouchGFX/App -I ../TouchGFX/target/generated -I ../TouchGFX/target -I ../Drivers/STM32H7xx_HAL_Driver/Inc -I ../Drivers/STM32H7xx_HAL_Driver/Inc/Legacy -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F -I ../Middlewares/Third_Party/FatFs/src -I ../Drivers/CMSIS/Device/ST/STM32H7xx/Include -I ../Drivers/CMSIS/Include -I ../Aluminium/Inc -I ../middlewares/st/touchgfx/framework/include -I ../touchgfx/generated/fonts/include -I ../touchgfx/generated/gui_generated/include -I ../touchgfx/generated/images/include -I ../touchgfx/generated/texts/include -I ../touchgfx/generated/videos/include -I ../touchgfx/gui/include -I ../miku666 -I ../miku666/pid-I.\RTE\_alu_rebuild-ID:\keil5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include-ID:\keil5\ARM\PACK\Keil\STM32H7xx_DFP\3.0.0\Drivers\CMSIS\Device\ST\STM32H7xx\Include-D__UVISION_VERSION="524" -D_RTE_ -DSTM32H750xx -DUSE_HAL_DRIVER -DSTM32H750xx-o .\alu_rebuild\model.o --depend .\alu_rebuild\model.d)
 I (../touchgfx/gui/include/gui/model/Model.hpp)(0x69E2FC58)
-I (../Aluminium/Inc/alu_file.h)(0x69E8ADFF)
+I (../Aluminium/Inc/alu_file.h)(0x69E9C3E2)
 I (../Core/Inc/main.h)(0x69E87464)
 I (../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal.h)(0x676B99FD)
 I (../Core/Inc/stm32h7xx_hal_conf.h)(0x69E8ADFF)
@@ -4576,7 +4576,7 @@ I (../middlewares/st/touchgfx/framework/include/touchgfx/hal/FrameBufferAllocato
 I (../middlewares/st/touchgfx/framework/include/touchgfx/hal/Gestures.hpp)(0x62B1662A)
 I (../middlewares/st/touchgfx/framework/include/touchgfx/transitions/Transition.hpp)(0x62B1662A)
 I (../touchgfx/gui/include/gui/model/Model.hpp)(0x69E2FC58)
-I (../Aluminium/Inc/alu_file.h)(0x69E8ADFF)
+I (../Aluminium/Inc/alu_file.h)(0x69E9C3E2)
 I (../Core/Inc/main.h)(0x69E87464)
 I (../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal.h)(0x676B99FD)
 I (../Core/Inc/stm32h7xx_hal_conf.h)(0x69E8ADFF)
@@ -4726,7 +4726,7 @@ I (../middlewares/st/touchgfx/framework/include/touchgfx/hal/FrameBufferAllocato
 I (../middlewares/st/touchgfx/framework/include/touchgfx/hal/Gestures.hpp)(0x62B1662A)
 I (../middlewares/st/touchgfx/framework/include/touchgfx/transitions/Transition.hpp)(0x62B1662A)
 I (../touchgfx/gui/include/gui/model/Model.hpp)(0x69E2FC58)
-I (../Aluminium/Inc/alu_file.h)(0x69E8ADFF)
+I (../Aluminium/Inc/alu_file.h)(0x69E9C3E2)
 I (../Core/Inc/main.h)(0x69E87464)
 I (../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal.h)(0x676B99FD)
 I (../Core/Inc/stm32h7xx_hal_conf.h)(0x69E8ADFF)
@@ -4876,7 +4876,7 @@ I (../middlewares/st/touchgfx/framework/include/touchgfx/hal/FrameBufferAllocato
 I (../middlewares/st/touchgfx/framework/include/touchgfx/hal/Gestures.hpp)(0x62B1662A)
 I (../middlewares/st/touchgfx/framework/include/touchgfx/transitions/Transition.hpp)(0x62B1662A)
 I (../touchgfx/gui/include/gui/model/Model.hpp)(0x69E2FC58)
-I (../Aluminium/Inc/alu_file.h)(0x69E8ADFF)
+I (../Aluminium/Inc/alu_file.h)(0x69E9C3E2)
 I (../Core/Inc/main.h)(0x69E87464)
 I (../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal.h)(0x676B99FD)
 I (../Core/Inc/stm32h7xx_hal_conf.h)(0x69E8ADFF)
@@ -5018,7 +5018,7 @@ I (../middlewares/st/touchgfx/framework/include/touchgfx/hal/FrameBufferAllocato
 I (../middlewares/st/touchgfx/framework/include/touchgfx/hal/Gestures.hpp)(0x62B1662A)
 I (../middlewares/st/touchgfx/framework/include/touchgfx/transitions/Transition.hpp)(0x62B1662A)
 I (../touchgfx/gui/include/gui/model/Model.hpp)(0x69E2FC58)
-I (../Aluminium/Inc/alu_file.h)(0x69E8ADFF)
+I (../Aluminium/Inc/alu_file.h)(0x69E9C3E2)
 I (../Core/Inc/main.h)(0x69E87464)
 I (../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal.h)(0x676B99FD)
 I (../Core/Inc/stm32h7xx_hal_conf.h)(0x69E8ADFF)
@@ -5160,7 +5160,7 @@ I (../middlewares/st/touchgfx/framework/include/touchgfx/hal/FrameBufferAllocato
 I (../middlewares/st/touchgfx/framework/include/touchgfx/hal/Gestures.hpp)(0x62B1662A)
 I (../middlewares/st/touchgfx/framework/include/touchgfx/transitions/Transition.hpp)(0x62B1662A)
 I (../touchgfx/gui/include/gui/model/Model.hpp)(0x69E2FC58)
-I (../Aluminium/Inc/alu_file.h)(0x69E8ADFF)
+I (../Aluminium/Inc/alu_file.h)(0x69E9C3E2)
 I (../Core/Inc/main.h)(0x69E87464)
 I (../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal.h)(0x676B99FD)
 I (../Core/Inc/stm32h7xx_hal_conf.h)(0x69E8ADFF)
@@ -5298,7 +5298,7 @@ I (../middlewares/st/touchgfx/framework/include/touchgfx/hal/FrameBufferAllocato
 I (../middlewares/st/touchgfx/framework/include/touchgfx/hal/Gestures.hpp)(0x62B1662A)
 I (../middlewares/st/touchgfx/framework/include/touchgfx/transitions/Transition.hpp)(0x62B1662A)
 I (../touchgfx/gui/include/gui/model/Model.hpp)(0x69E2FC58)
-I (../Aluminium/Inc/alu_file.h)(0x69E8ADFF)
+I (../Aluminium/Inc/alu_file.h)(0x69E9C3E2)
 I (../Core/Inc/main.h)(0x69E87464)
 I (../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal.h)(0x676B99FD)
 I (../Core/Inc/stm32h7xx_hal_conf.h)(0x69E8ADFF)
@@ -5473,7 +5473,7 @@ I (../middlewares/st/touchgfx/framework/include/touchgfx/hal/FrameBufferAllocato
 I (../middlewares/st/touchgfx/framework/include/touchgfx/hal/Gestures.hpp)(0x62B1662A)
 I (../middlewares/st/touchgfx/framework/include/touchgfx/transitions/Transition.hpp)(0x62B1662A)
 I (../touchgfx/gui/include/gui/model/Model.hpp)(0x69E2FC58)
-I (../Aluminium/Inc/alu_file.h)(0x69E8ADFF)
+I (../Aluminium/Inc/alu_file.h)(0x69E9C3E2)
 I (../Core/Inc/main.h)(0x69E87464)
 I (../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal.h)(0x676B99FD)
 I (../Core/Inc/stm32h7xx_hal_conf.h)(0x69E8ADFF)
@@ -5728,7 +5728,7 @@ I (../middlewares/st/touchgfx/framework/include/touchgfx/hal/FrameBufferAllocato
 I (../middlewares/st/touchgfx/framework/include/touchgfx/hal/Gestures.hpp)(0x62B1662A)
 I (../middlewares/st/touchgfx/framework/include/touchgfx/transitions/Transition.hpp)(0x62B1662A)
 I (../touchgfx/gui/include/gui/model/Model.hpp)(0x69E2FC58)
-I (../Aluminium/Inc/alu_file.h)(0x69E8ADFF)
+I (../Aluminium/Inc/alu_file.h)(0x69E9C3E2)
 I (../Core/Inc/main.h)(0x69E87464)
 I (../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal.h)(0x676B99FD)
 I (../Core/Inc/stm32h7xx_hal_conf.h)(0x69E8ADFF)
@@ -5989,7 +5989,7 @@ I (../middlewares/st/touchgfx/framework/include/touchgfx/hal/FrameBufferAllocato
 I (../middlewares/st/touchgfx/framework/include/touchgfx/hal/Gestures.hpp)(0x62B1662A)
 I (../middlewares/st/touchgfx/framework/include/touchgfx/transitions/Transition.hpp)(0x62B1662A)
 I (../touchgfx/gui/include/gui/model/Model.hpp)(0x69E2FC58)
-I (../Aluminium/Inc/alu_file.h)(0x69E8ADFF)
+I (../Aluminium/Inc/alu_file.h)(0x69E9C3E2)
 I (../Core/Inc/main.h)(0x69E87464)
 I (../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal.h)(0x676B99FD)
 I (../Core/Inc/stm32h7xx_hal_conf.h)(0x69E8ADFF)
@@ -6142,7 +6142,7 @@ I (../middlewares/st/touchgfx/framework/include/touchgfx/hal/FrameBufferAllocato
 I (../middlewares/st/touchgfx/framework/include/touchgfx/hal/Gestures.hpp)(0x62B1662A)
 I (../middlewares/st/touchgfx/framework/include/touchgfx/transitions/Transition.hpp)(0x62B1662A)
 I (../touchgfx/gui/include/gui/model/Model.hpp)(0x69E2FC58)
-I (../Aluminium/Inc/alu_file.h)(0x69E8ADFF)
+I (../Aluminium/Inc/alu_file.h)(0x69E9C3E2)
 I (../Core/Inc/main.h)(0x69E87464)
 I (../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal.h)(0x676B99FD)
 I (../Core/Inc/stm32h7xx_hal_conf.h)(0x69E8ADFF)
@@ -6286,7 +6286,7 @@ I (../middlewares/st/touchgfx/framework/include/touchgfx/hal/FrameBufferAllocato
 I (../middlewares/st/touchgfx/framework/include/touchgfx/hal/Gestures.hpp)(0x62B1662A)
 I (../middlewares/st/touchgfx/framework/include/touchgfx/transitions/Transition.hpp)(0x62B1662A)
 I (../touchgfx/gui/include/gui/model/Model.hpp)(0x69E2FC58)
-I (../Aluminium/Inc/alu_file.h)(0x69E8ADFF)
+I (../Aluminium/Inc/alu_file.h)(0x69E9C3E2)
 I (../Core/Inc/main.h)(0x69E87464)
 I (../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal.h)(0x676B99FD)
 I (../Core/Inc/stm32h7xx_hal_conf.h)(0x69E8ADFF)
@@ -6485,7 +6485,7 @@ I (../middlewares/st/touchgfx/framework/include/touchgfx/Unicode.hpp)(0x62B1662A
 I (D:\keil5\ARM\ARMCC\include\stdarg.h)(0x588B8344)
 I (../touchgfx/generated/fonts/include/fonts/UnmappedDataFont.hpp)(0x69E2FC58)
 F (../middlewares/st/touchgfx/lib/core/cortex_m7/Keil/touchgfx_core.lib)(0x62B167D0)()
-F (..\Aluminium\Src\alu_control.c)(0x69E995D0)(--c99 -c --cpu Cortex-M7.fp.dp -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../FATFS/Target -I ../FATFS/App -I ../TouchGFX/App -I ../TouchGFX/target/generated -I ../TouchGFX/target -I ../Drivers/STM32H7xx_HAL_Driver/Inc -I ../Drivers/STM32H7xx_HAL_Driver/Inc/Legacy -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F -I ../Middlewares/Third_Party/FatFs/src -I ../Drivers/CMSIS/Device/ST/STM32H7xx/Include -I ../Drivers/CMSIS/Include -I ../Aluminium/Inc -I ../middlewares/st/touchgfx/framework/include -I ../touchgfx/generated/fonts/include -I ../touchgfx/generated/gui_generated/include -I ../touchgfx/generated/images/include -I ../touchgfx/generated/texts/include -I ../touchgfx/generated/videos/include -I ../touchgfx/gui/include -I ../miku666 -I ../miku666/pid-I.\RTE\_alu_rebuild-ID:\keil5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include-ID:\keil5\ARM\PACK\Keil\STM32H7xx_DFP\3.0.0\Drivers\CMSIS\Device\ST\STM32H7xx\Include-D__UVISION_VERSION="524" -D_RTE_ -DSTM32H750xx -DUSE_HAL_DRIVER -DSTM32H750xx-o .\alu_rebuild\alu_control.o --depend .\alu_rebuild\alu_control.d)
+F (..\Aluminium\Src\alu_control.c)(0x69E9C4F0)(--c99 -c --cpu Cortex-M7.fp.dp -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../FATFS/Target -I ../FATFS/App -I ../TouchGFX/App -I ../TouchGFX/target/generated -I ../TouchGFX/target -I ../Drivers/STM32H7xx_HAL_Driver/Inc -I ../Drivers/STM32H7xx_HAL_Driver/Inc/Legacy -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F -I ../Middlewares/Third_Party/FatFs/src -I ../Drivers/CMSIS/Device/ST/STM32H7xx/Include -I ../Drivers/CMSIS/Include -I ../Aluminium/Inc -I ../middlewares/st/touchgfx/framework/include -I ../touchgfx/generated/fonts/include -I ../touchgfx/generated/gui_generated/include -I ../touchgfx/generated/images/include -I ../touchgfx/generated/texts/include -I ../touchgfx/generated/videos/include -I ../touchgfx/gui/include -I ../miku666 -I ../miku666/pid-I.\RTE\_alu_rebuild-ID:\keil5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include-ID:\keil5\ARM\PACK\Keil\STM32H7xx_DFP\3.0.0\Drivers\CMSIS\Device\ST\STM32H7xx\Include-D__UVISION_VERSION="524" -D_RTE_ -DSTM32H750xx -DUSE_HAL_DRIVER -DSTM32H750xx-o .\alu_rebuild\alu_control.o --depend .\alu_rebuild\alu_control.d)
 I (../Aluminium/Inc/alu_control.h)(0x69E2FC58)
 I (../Core/Inc/main.h)(0x69E87464)
 I (../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal.h)(0x676B99FD)
@@ -6555,7 +6555,7 @@ I (D:\keil5\ARM\ARMCC\include\stdio.h)(0x588B8344)
 I (../miku666/pid/pid.h)(0x69E2FC58)
 I (../miku666/pid/fuzzy_pid.h)(0x69E2FC58)
 I (../miku666/pid/advanced_pid.h)(0x69E2FC58)
-I (../Aluminium/Inc/alu_file.h)(0x69E8ADFF)
+I (../Aluminium/Inc/alu_file.h)(0x69E9C3E2)
 I (../FATFS/App/fatfs.h)(0x69E8745D)
 I (../Middlewares/Third_Party/FatFs/src/ff.h)(0x676B99FE)
 I (../Middlewares/Third_Party/FatFs/src/integer.h)(0x676B99FE)
@@ -6568,8 +6568,8 @@ I (../FATFS/Target/sd_diskio.h)(0x69E8745D)
 I (D:\keil5\ARM\ARMCC\include\stdlib.h)(0x588B8344)
 I (D:\keil5\ARM\ARMCC\include\string.h)(0x588B8344)
 I (../miku666/temp_filter.h)(0x69E2FC58)
-F (..\Aluminium\Src\alu_file.c)(0x69E8AF8E)(--c99 -c --cpu Cortex-M7.fp.dp -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../FATFS/Target -I ../FATFS/App -I ../TouchGFX/App -I ../TouchGFX/target/generated -I ../TouchGFX/target -I ../Drivers/STM32H7xx_HAL_Driver/Inc -I ../Drivers/STM32H7xx_HAL_Driver/Inc/Legacy -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F -I ../Middlewares/Third_Party/FatFs/src -I ../Drivers/CMSIS/Device/ST/STM32H7xx/Include -I ../Drivers/CMSIS/Include -I ../Aluminium/Inc -I ../middlewares/st/touchgfx/framework/include -I ../touchgfx/generated/fonts/include -I ../touchgfx/generated/gui_generated/include -I ../touchgfx/generated/images/include -I ../touchgfx/generated/texts/include -I ../touchgfx/generated/videos/include -I ../touchgfx/gui/include -I ../miku666 -I ../miku666/pid-I.\RTE\_alu_rebuild-ID:\keil5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include-ID:\keil5\ARM\PACK\Keil\STM32H7xx_DFP\3.0.0\Drivers\CMSIS\Device\ST\STM32H7xx\Include-D__UVISION_VERSION="524" -D_RTE_ -DSTM32H750xx -DUSE_HAL_DRIVER -DSTM32H750xx-o .\alu_rebuild\alu_file.o --depend .\alu_rebuild\alu_file.d)
-I (../Aluminium/Inc/alu_file.h)(0x69E8ADFF)
+F (..\Aluminium\Src\alu_file.c)(0x69E9CA78)(--c99 -c --cpu Cortex-M7.fp.dp -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../FATFS/Target -I ../FATFS/App -I ../TouchGFX/App -I ../TouchGFX/target/generated -I ../TouchGFX/target -I ../Drivers/STM32H7xx_HAL_Driver/Inc -I ../Drivers/STM32H7xx_HAL_Driver/Inc/Legacy -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F -I ../Middlewares/Third_Party/FatFs/src -I ../Drivers/CMSIS/Device/ST/STM32H7xx/Include -I ../Drivers/CMSIS/Include -I ../Aluminium/Inc -I ../middlewares/st/touchgfx/framework/include -I ../touchgfx/generated/fonts/include -I ../touchgfx/generated/gui_generated/include -I ../touchgfx/generated/images/include -I ../touchgfx/generated/texts/include -I ../touchgfx/generated/videos/include -I ../touchgfx/gui/include -I ../miku666 -I ../miku666/pid-I.\RTE\_alu_rebuild-ID:\keil5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include-ID:\keil5\ARM\PACK\Keil\STM32H7xx_DFP\3.0.0\Drivers\CMSIS\Device\ST\STM32H7xx\Include-D__UVISION_VERSION="524" -D_RTE_ -DSTM32H750xx -DUSE_HAL_DRIVER -DSTM32H750xx-o .\alu_rebuild\alu_file.o --depend .\alu_rebuild\alu_file.d)
+I (../Aluminium/Inc/alu_file.h)(0x69E9C3E2)
 I (../Core/Inc/main.h)(0x69E87464)
 I (../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal.h)(0x676B99FD)
 I (../Core/Inc/stm32h7xx_hal_conf.h)(0x69E8ADFF)
@@ -6971,8 +6971,8 @@ I (../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_tim_ex.h)(0x676B99FD)
 I (../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_uart.h)(0x676B99FD)
 I (../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_uart_ex.h)(0x676B99FD)
 I (..\miku666\ads1118.h)(0x69E2FC58)
-F (..\miku666\task_control.c)(0x69E99F91)(--c99 -c --cpu Cortex-M7.fp.dp -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../FATFS/Target -I ../FATFS/App -I ../TouchGFX/App -I ../TouchGFX/target/generated -I ../TouchGFX/target -I ../Drivers/STM32H7xx_HAL_Driver/Inc -I ../Drivers/STM32H7xx_HAL_Driver/Inc/Legacy -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F -I ../Middlewares/Third_Party/FatFs/src -I ../Drivers/CMSIS/Device/ST/STM32H7xx/Include -I ../Drivers/CMSIS/Include -I ../Aluminium/Inc -I ../middlewares/st/touchgfx/framework/include -I ../touchgfx/generated/fonts/include -I ../touchgfx/generated/gui_generated/include -I ../touchgfx/generated/images/include -I ../touchgfx/generated/texts/include -I ../touchgfx/generated/videos/include -I ../touchgfx/gui/include -I ../miku666 -I ../miku666/pid-I.\RTE\_alu_rebuild-ID:\keil5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include-ID:\keil5\ARM\PACK\Keil\STM32H7xx_DFP\3.0.0\Drivers\CMSIS\Device\ST\STM32H7xx\Include-D__UVISION_VERSION="524" -D_RTE_ -DSTM32H750xx -DUSE_HAL_DRIVER -DSTM32H750xx-o .\alu_rebuild\task_control.o --depend .\alu_rebuild\task_control.d)
-I (..\miku666\task_control.h)(0x69E99973)
+F (..\miku666\task_control.c)(0x69E9C4F0)(--c99 -c --cpu Cortex-M7.fp.dp -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../FATFS/Target -I ../FATFS/App -I ../TouchGFX/App -I ../TouchGFX/target/generated -I ../TouchGFX/target -I ../Drivers/STM32H7xx_HAL_Driver/Inc -I ../Drivers/STM32H7xx_HAL_Driver/Inc/Legacy -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F -I ../Middlewares/Third_Party/FatFs/src -I ../Drivers/CMSIS/Device/ST/STM32H7xx/Include -I ../Drivers/CMSIS/Include -I ../Aluminium/Inc -I ../middlewares/st/touchgfx/framework/include -I ../touchgfx/generated/fonts/include -I ../touchgfx/generated/gui_generated/include -I ../touchgfx/generated/images/include -I ../touchgfx/generated/texts/include -I ../touchgfx/generated/videos/include -I ../touchgfx/gui/include -I ../miku666 -I ../miku666/pid-I.\RTE\_alu_rebuild-ID:\keil5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include-ID:\keil5\ARM\PACK\Keil\STM32H7xx_DFP\3.0.0\Drivers\CMSIS\Device\ST\STM32H7xx\Include-D__UVISION_VERSION="524" -D_RTE_ -DSTM32H750xx -DUSE_HAL_DRIVER -DSTM32H750xx-o .\alu_rebuild\task_control.o --depend .\alu_rebuild\task_control.d)
+I (..\miku666\task_control.h)(0x69E9C4F0)
 I (../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.h)(0x676B99CF)
 I (../Middlewares/Third_Party/FreeRTOS/Source/include/FreeRTOS.h)(0x676B99CF)
 I (D:\keil5\ARM\ARMCC\include\stddef.h)(0x588B8344)
@@ -7044,7 +7044,7 @@ I (..\miku666\thermocouple.h)(0x69E2FC58)
 I (../Aluminium/Inc/alu_control.h)(0x69E2FC58)
 I (../Core/Inc/usart.h)(0x69E87462)
 I (D:\keil5\ARM\ARMCC\include\stdio.h)(0x588B8344)
-I (../Aluminium/Inc/alu_file.h)(0x69E8ADFF)
+I (../Aluminium/Inc/alu_file.h)(0x69E9C3E2)
 I (../FATFS/App/fatfs.h)(0x69E8745D)
 I (../Middlewares/Third_Party/FatFs/src/ff.h)(0x676B99FE)
 I (../Middlewares/Third_Party/FatFs/src/integer.h)(0x676B99FE)

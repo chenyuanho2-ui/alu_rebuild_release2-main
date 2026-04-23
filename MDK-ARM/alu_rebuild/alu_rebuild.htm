@@ -3,7 +3,7 @@
 <title>Static Call Graph - [.\alu_rebuild\alu_rebuild.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\alu_rebuild\alu_rebuild.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060528: Last Updated: Thu Apr 23 12:28:59 2026
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060528: Last Updated: Thu Apr 23 15:32:30 2026
 <BR><P>
 <H3>Maximum Stack Usage =          0 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -2869,7 +2869,7 @@ Global Symbols
 <LI><a href="#[10e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ScrMainView::setupScreen()
 </UL>
 
-<P><STRONG><a name="[2eb]"></a>Alu_sniff_files</STRONG> (Thumb, 104 bytes, Stack size 0 bytes, alu_file.o(i.Alu_sniff_files))
+<P><STRONG><a name="[2eb]"></a>Alu_sniff_files</STRONG> (Thumb, 164 bytes, Stack size 0 bytes, alu_file.o(i.Alu_sniff_files))
 <BR><BR>[Calls]<UL><LI><a href="#[310]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;f_readdir
 <LI><a href="#[30f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;f_opendir
 <LI><a href="#[314]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;f_closedir
@@ -4638,7 +4638,8 @@ Global Symbols
 <LI><a href="#[336]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GT9XX_Reset
 <LI><a href="#[330]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GT9XX_ReadReg
 </UL>
-<BR>[Called By]<UL><LI><a href="#[287]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
+<BR>[Called By]<UL><LI><a href="#[17a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;STM32TouchController::init()
+<LI><a href="#[287]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
 <P><STRONG><a name="[414]"></a>Touch_Scan</STRONG> (Thumb, 158 bytes, Stack size 0 bytes, touch_800x480.o(i.Touch_Scan))
@@ -5292,7 +5293,9 @@ Global Symbols
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> stm32touchcontroller.o(.constdata__ZTV20STM32TouchController)
 </UL>
-<P><STRONG><a name="[17a]"></a>STM32TouchController::init()</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, stm32touchcontroller.o(i._ZN20STM32TouchController4initEv))
+<P><STRONG><a name="[17a]"></a>STM32TouchController::init()</STRONG> (Thumb, 4 bytes, Stack size 0 bytes, stm32touchcontroller.o(i._ZN20STM32TouchController4initEv))
+<BR><BR>[Calls]<UL><LI><a href="#[413]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Touch_Init
+</UL>
 <BR>[Address Reference Count : 1]<UL><LI> stm32touchcontroller.o(.constdata__ZTV20STM32TouchController)
 </UL>
 <P><STRONG><a name="[d7]"></a>STM32TouchController::~STM32TouchController()</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, stm32touchcontroller.o(i._ZN20STM32TouchControllerD1Ev))

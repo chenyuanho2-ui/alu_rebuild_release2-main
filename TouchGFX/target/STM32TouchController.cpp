@@ -33,6 +33,7 @@ void STM32TouchController::init()
      * Initialize touch controller and driver
      *
      */
+    Touch_Init();  // 初始化触摸控制器
 }
 
 bool STM32TouchController::sampleTouch(int32_t& x, int32_t& y)
