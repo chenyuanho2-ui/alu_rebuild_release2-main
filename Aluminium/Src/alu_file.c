@@ -208,7 +208,7 @@ void Alu_sniff_files(AluDynList* list, const TCHAR *sniff_path){
         }
 
         if (strncmp(AluFile_info.fname, "pid_mode", 8) == 0) {
-            continue;  // 忽略pid_mode.txt配置文件
+            continue;  // 忽略pid_mode.txt配置文件1
         }
 
         if (strncmp(AluFile_info.fname, "pid_fuzzy", 9) == 0) {
